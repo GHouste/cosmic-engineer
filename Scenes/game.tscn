@@ -1,3 +1,48 @@
 [gd_scene format=3 uid="uid://blc5gh53ixn7j"]
 
+[ext_resource type="PackedScene" uid="uid://cg33qsj6aihvd" path="res://Scenes/player.tscn" id="1_ebmjs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ebmjs"]
+sky_top_color = Color(0.3268092, 0.010809782, 0.5762927, 1)
+sky_horizon_color = Color(0.36143303, 0.20400181, 0.48654902, 1)
+ground_bottom_color = Color(0.3254902, 0.011764706, 0.5764706, 1)
+ground_horizon_color = Color(0.36143303, 0.20400181, 0.48654902, 1)
+energy_multiplier = 0.75
+
+[sub_resource type="Sky" id="Sky_qxrlw"]
+sky_material = SubResource("ProceduralSkyMaterial_ebmjs")
+
+[sub_resource type="Environment" id="Environment_wrm1d"]
+background_mode = 2
+sky = SubResource("Sky_qxrlw")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ebmjs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2poj3"]
+
 [node name="Game" type="Node3D" unique_id=903979741]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1601743121]
+environment = SubResource("Environment_wrm1d")
+
+[node name="game manager" type="Node" parent="." unique_id=1066645510]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1030688074]
+transform = Transform3D(3.3321564, 0, 0, 0, 1, 0, 0, 0, 4.534299, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=490045917]
+transform = Transform3D(12.376795, 0, 0, 0, 0.18699406, 0, 0, 0, 10.401345, 0, 0, 0)
+mesh = SubResource("BoxMesh_ebmjs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1056394162]
+transform = Transform3D(12.376796, 0, 0, 0, 0.18699408, 0, 0, 0, 10.401345, 0, 0, 0)
+shape = SubResource("BoxShape3D_2poj3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=886493648]
+transform = Transform3D(0.4916242, -0.33823717, 0.8024346, -0.8697058, -0.23705217, 0.43291813, 0.04378987, -0.910715, -0.4107074, 21.118938, 94.071945, 100.86815)
+light_energy = 1.302
+
+[node name="Player" parent="." unique_id=1459931953 instance=ExtResource("1_ebmjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5553331, 0)
