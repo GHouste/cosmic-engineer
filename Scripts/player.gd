@@ -3,10 +3,10 @@ extends CharacterBody3D
 @onready var neck = $neck
 @onready var camera = $neck/Camera3D
 
-const base_speed = 5.0
-const run_speed = 10.0
+const BASE_SPEED = 5.0
+const RUN_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
-const stamina_cap = 100
+const STAMINA_CAP = 100
 
 var is_running = false
 var stamina = 100
@@ -43,18 +43,18 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_running:
 		if direction:
-			velocity.x = direction.x * base_speed
-			velocity.z = direction.z * base_speed
+			velocity.x = direction.x * BASE_SPEED
+			velocity.z = direction.z * BASE_SPEED
 		else:
-			velocity.x = move_toward(velocity.x, 0, base_speed)
-			velocity.z = move_toward(velocity.z, 0, base_speed)
+			velocity.x = move_toward(velocity.x, 0, BASE_SPEED)
+			velocity.z = move_toward(velocity.z, 0, BASE_SPEED)
 	
 	if is_running and stamina > 0:
 		if direction:
-			velocity.x = direction.x * run_speed
-			velocity.z = direction.z * run_speed
+			velocity.x = direction.x * RUN_SPEED
+			velocity.z = direction.z * RUN_SPEED
 		else:
-			velocity.x = move_toward(velocity.x, 0, run_speed)
-			velocity.z = move_toward(velocity.z, 0, run_speed)	
+			velocity.x = move_toward(velocity.x, 0, RUN_SPEED)
+			velocity.z = move_toward(velocity.z, 0, RUN_SPEED)	
 	
 	move_and_slide()
